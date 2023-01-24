@@ -74,7 +74,7 @@ async def slowpics_collection(client, message, file_name, path):
         await msg.edit(
             f"Dosya Adı: `{unquote(file_name)}`\n\nScreenshotlar: https://slow.pics/c/{response.text}",
             disable_web_page_preview=True)
-
+        
 async def generate_ss_from_file(
         client,
         message,
@@ -116,7 +116,7 @@ async def generate_ss_from_file(
     await slowpics_collection(client, message, file_name, path=f"{os.getcwd()}/screenshot_{rand_str}")
     await client.send_photo(
         chat_id=message.chat.id, 
-        photo=file_name) 
+        photo=) 
     shutil.rmtree(f"screenshot_{rand_str}")
     os.remove(file_name)
 
