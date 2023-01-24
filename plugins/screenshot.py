@@ -74,7 +74,7 @@ async def slowpics_collection(message, file_name, path):
         await msg.edit(
             f"Dosya Adı: `{unquote(file_name)}`\n\nScreenshotlar: https://slow.pics/c/{response.text}",
             disable_web_page_preview=True)
-        await bot.send_photo(
+        await client.send_photo(
             chat_id=message.chat.id, 
             photo=file_name)
 
