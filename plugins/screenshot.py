@@ -8,6 +8,7 @@ import asyncio
 import time
 import shlex
 import json
+import random
 import re
 from pyrogram.errors import MessageNotModified
 from requests_toolbelt import MultipartEncoder
@@ -22,7 +23,7 @@ async def slowpics_collection(message, file_name, path):
     slow.pics'e yükleme yapar.
     """
 
-    msg = await message.reply_text("uploading generated screenshots to slow.pics.", quote=True)
+    msg = await message.reply_text("`Screenshotlar slow.pics'e yükleniyor.`", quote=True)
 
     img_list = os.listdir(path)
     data = {
@@ -60,7 +61,7 @@ async def slowpics_collection(message, file_name, path):
 
         response = client.post("https://slow.pics/api/collection", data=files, headers=headers)
         await msg.edit(
-            f"File Name: `{unquote(file_name)}`\n\nFrames: https://slow.pics/c/{response.text}",
+            f"Dosya Adı: `{unquote(file_name)}`\n\nScreenshotlar: https://slow.pics/c/{response.text}",
             disable_web_page_preview=True)
 
 async def generate_ss_from_file(
@@ -71,10 +72,10 @@ async def generate_ss_from_file(
         file_duration
 ):
     """
-    Generates screenshots from partially/fully downloaded files using ffmpeg.
+    FFMPEG İLE DOSYADAN SCREENSHOT ALMA.
     """
 
-    await replymsg.edit(f"Generating **{frame_count}** screnshots from `{unquote(file_name)}`, please wait...")
+    await replymsg.edit("`**{frame_count}** tane screnshots `{unquote(file_name)}` dosyasından alınıyor..`, Lütfen Bekle...")
 
     rand_str = randstr()
     makedir(f"screenshot_{rand_str}")
@@ -145,7 +146,7 @@ async def telegram_screenshot(client, message, frame_count):
 
         downloaded_percentage = 25
 
-    await replymsg.edit("Partial file downloaded....")
+    await replymsg.edit("`Dosyan Indiriliyor....`")
     # Partial file downloaded
 
     mediainfo_json = json.loads(subprocess.check_output(["mediainfo", file_name, "--Output=JSON"]).decode("utf-8"))
