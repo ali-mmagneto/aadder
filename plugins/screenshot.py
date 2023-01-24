@@ -137,7 +137,7 @@ async def telegram_screenshot(client, message, frame_count):
         return await message.reply_text("`Sadece Dosyalardan Screenshot alabiliyorum`....", quote=True)
 
     # Downloading partial file.
-    replymsg = await message.reply_text("`Dosyan Indiriliyor....`", quote=True)
+    replymsg = await message.reply_text("`Dosyan Kısmi olarak Indiriliyor....`", quote=True)
 
     if int(size) <= 200000000:
         await message.download(os.path.join(os.getcwd(), file_name))
@@ -151,7 +151,7 @@ async def telegram_screenshot(client, message, frame_count):
 
         downloaded_percentage = 25
 
-    await replymsg.edit("`Dosyan Indiriliyor....`")
+    await replymsg.edit("`Dosyan İndirildi....`")
     # Partial file downloaded
 
     mediainfo_json = json.loads(subprocess.check_output(["mediainfo", file_name, "--Output=JSON"]).decode("utf-8"))
