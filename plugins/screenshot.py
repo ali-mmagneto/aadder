@@ -75,7 +75,7 @@ async def generate_ss_from_file(
     FFMPEG İLE DOSYADAN SCREENSHOT ALMA.
     """
 
-    await replymsg.edit("`**{frame_count}** tane screnshots `{unquote(file_name)}` dosyasından alınıyor..`, Lütfen Bekle...")
+    await replymsg.edit(f"`**{frame_count}** tane screnshots `{unquote(file_name)}` dosyasından alınıyor..` `Lütfen Bekle...`")
 
     rand_str = randstr()
     makedir(f"screenshot_{rand_str}")
