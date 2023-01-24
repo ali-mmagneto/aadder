@@ -19,6 +19,12 @@ from pyrogram.errors import MessageNotModified
 from requests_toolbelt import MultipartEncoder
 from urllib.parse import unquote
 
+
+def makedir(name: str):
+    if os.path.exists(name):
+        shutil.rmtree(name)
+    os.mkdir(name)
+
 def randstr():
     return ''.join(random.choices(string.ascii_lowercase + string.digits, k=7))
 
