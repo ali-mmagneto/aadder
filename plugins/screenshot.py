@@ -10,6 +10,11 @@ import shlex
 import json
 import random
 import re
+import os
+import string
+import shutil
+import random
+
 from pyrogram.errors import MessageNotModified
 from requests_toolbelt import MultipartEncoder
 from urllib.parse import unquote
