@@ -74,8 +74,12 @@ async def slowpics_collection(message, file_name, path):
         await msg.edit(
             f"Dosya Adı: `{unquote(file_name)}`\n\nScreenshotlar: https://slow.pics/c/{response.text}",
             disable_web_page_preview=True)
+        await bot.send_photo(
+            chat_id=message.chat.id, 
+            photo=file_name)
 
 async def generate_ss_from_file(
+        client,
         message,
         replymsg,
         file_name,
@@ -112,7 +116,7 @@ async def generate_ss_from_file(
         loop_count -= 1
 
     await replymsg.delete()
-    await slowpics_collection(message, file_name, path=f"{os.getcwd()}/screenshot_{rand_str}")
+    await slowpics_collection(client, message, file_name, path=f"{os.getcwd()}/screenshot_{rand_str}")
 
     shutil.rmtree(f"screenshot_{rand_str}")
     os.remove(file_name)
@@ -169,6 +173,7 @@ async def telegram_screenshot(client, message, frame_count):
         partial_file_duration = (downloaded_percentage * float(total_duration)) / 100
 
     await generate_ss_from_file(
+        client, 
         message,
         replymsg,
         file_name,
