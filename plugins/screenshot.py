@@ -13,6 +13,10 @@ from pyrogram.errors import MessageNotModified
 from requests_toolbelt import MultipartEncoder
 from urllib.parse import unquote
 
+def randstr():
+    return ''.join(random.choices(string.ascii_lowercase + string.digits, k=7))
+
+
 async def slowpics_collection(message, file_name, path):
     """
     slow.pics'e yükleme yapar.
