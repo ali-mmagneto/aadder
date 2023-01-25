@@ -114,9 +114,7 @@ async def generate_ss_from_file(
 
     await replymsg.delete()
     await slowpics_collection(client, message, file_name, path=f"{os.getcwd()}/screenshot_{rand_str}")
-    await client.send_photo(
-        chat_id=message.chat.id, 
-        photo=) 
+
     shutil.rmtree(f"screenshot_{rand_str}")
     os.remove(file_name)
 
