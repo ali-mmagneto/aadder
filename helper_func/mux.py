@@ -57,14 +57,14 @@ async def sesekle_vid(vid_filename, aud_filename, msg):
 
     out_file = '.'.join(vid_filename.split('.')[:-1])
     output = out_file+'1.mkv'
-    out_location = Config.DOWNLOAD_DIR+'/'+output + '.mp4'
+    out_location = Config.DOWNLOAD_DIR+'/'+output
     aud_ext = aud_filename.split('.').pop()
     command = [
             'ffmpeg','-hide_banner',
             '-i',vid,
             '-i',sub,
             '-map','0:v','-map','1:a',
-            '-c:v','mp4',
+            '-c:v','copy',
             '-y',out_location
             ]
 
