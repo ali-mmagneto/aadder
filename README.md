@@ -51,3 +51,5 @@ OWNER_ID - Botun Sahibinin Telegram kullanıcı adı @ olmadan.
 Foto gönderince oto thumb olarak alır. 
 
 /delthumb - thumbı siler. 
+
+/ss - Screenshot alır. 
