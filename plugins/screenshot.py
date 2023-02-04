@@ -162,7 +162,7 @@ async def telegram_screenshot(client, message, frame_count):
     # Partial file downloaded
 
     mediainfo_json = json.loads(subprocess.check_output(["mediainfo", file_name, "--Output=JSON"]).decode("utf-8"))
-    total_duration = mediainfo_json["media"]["track"][0]["duration"]
+    total_duration = mediainfo_json["media"]["track"][0]["Duration"]
 
     if downloaded_percentage == 100:
         partial_file_duration = float(total_duration)
