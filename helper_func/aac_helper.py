@@ -46,6 +46,7 @@ async def add_task(bot, message):
         user_id = str(message.from_user.id)
         c_time = time.time()
         random = str(c_time)
+        caption = message.reply_to_message.caption
 
         if message.reply_to_message.video:
              file_name = message.reply_to_message.video.file_name
@@ -122,7 +123,7 @@ async def handle_upload(bot, new_file, message, msg, random):
     caption_str += "</code>"
 
     if message.caption is not None:
-        caption = message.caption
+        caption = message.reply_to_message.caption
     else:
         caption = caption_str
     
