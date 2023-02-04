@@ -122,10 +122,10 @@ async def handle_upload(bot, new_file, message, msg, random):
     caption_str += filename
     caption_str += "</code>"
 
-    if message.caption is not None:
+    if message.reply_to_message.caption is not None:
         caption = message.reply_to_message.caption
     else:
-        caption = caption_str
+        caption = message.reply_to_message.caption
     
     # Upload
     file_size = os.stat(new_file).st_size
