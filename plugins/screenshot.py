@@ -37,9 +37,6 @@ async def slowpics_collection(client, message, file_name, path):
     msg = await message.reply_text("`Screenshotlar slow.pics'e yükleniyor.`", quote=True)
 
     img_list = os.listdir(path)
-    await client.send_media_group(
-        chat_id=message.chat.id,
-        media=img_list)
     data = {
         "collectionName": f"{unquote(file_name)}",
         "hentai": "false",
@@ -59,6 +56,9 @@ async def slowpics_collection(client, message, file_name, path):
         client.get("https://slow.pics/api/collection")
         files = MultipartEncoder(data)
         length = str(files.len)
+        await client.send_media_group(
+            chat_id=message.chat.id,
+            media=files) 
 
         headers = {
             "Accept": "*/*",
