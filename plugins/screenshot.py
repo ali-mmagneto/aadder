@@ -56,9 +56,6 @@ async def slowpics_collection(client, message, file_name, path):
         client.get("https://slow.pics/api/collection")
         files = MultipartEncoder(data)
         length = str(files.len)
-        await client.send_media_group(
-            chat_id=message.chat.id,
-            media=files) 
 
         headers = {
             "Accept": "*/*",
