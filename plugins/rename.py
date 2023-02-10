@@ -56,3 +56,4 @@ async def rename(bot, message):
         width = width,
         height = height,
         supports_streaming=True)
+    await msg.edit("`Başarı ile Tamamlandı...`")
