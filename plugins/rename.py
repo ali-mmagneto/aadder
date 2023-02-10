@@ -6,7 +6,7 @@ from helper_func.progress_bar import progress_bar
 from config import Config
 
 
-@Bot.on_message(filters.command('rename'))
+@Client.on_message(filters.command('rename'))
 async def rename(bot, message):
     text = message.text.split(" ", 1)
     file_name = text[1]
