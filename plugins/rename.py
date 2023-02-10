@@ -19,7 +19,7 @@ async def rename(bot, message):
         text="`İşlem Başlatıldı...`")
     media = await bot.download_media(
                 message = message.reply_to_message,
-                file_name = f"{file_name}"
+                file_name = f"{file_name}",
                 progress=progress_bar,
                 progress_args=("`İndiriliyor...`", msg, start_time)))
     splitpath = media.split("/downloads/")
