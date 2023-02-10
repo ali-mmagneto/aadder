@@ -136,3 +136,4 @@ async def rename(bot, message):
                 c_time
             )
         )
+        await msg.edit("`Başarıyla Tamamlandı`")
