@@ -59,6 +59,7 @@ async def rename(bot, message):
             supports_streaming=True)
         await msg.edit("`Başarı ile Tamamlandı...`")
     elif video.photo:
+        start_time = time.time()
         await msg.edit("`Yükleniyor..`") 
         await bot.send_photo(
             chat_id = message.chat.id,
