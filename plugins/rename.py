@@ -13,7 +13,7 @@ async def rename(bot, message):
     text = message.text.split(" ", 1)
     file_name = text[1]
     ext = file_name.split('.').pop()
-    caption = f"<code>{file_name}</code>`"
+    caption = f"<code>{file_name}</code>"
     start_time = time.time()
     video = f"downloads/{file_name}"
     chat_id = str(message.from_user.id)
