@@ -10,6 +10,7 @@ import time
 async def rename(bot, message):
     text = message.text.split(" ", 1)
     file_name = text[1]
+    ext = file_name.split('.').pop()
     caption = f"<code>{file_name}</code>`"
     start_time = time.time()
     video = f"downloads/{file_name}"
@@ -27,7 +28,7 @@ async def rename(bot, message):
     dow_file_name = splitpath[1]
     old_file_name =f"downloads/{dow_file_name}"
     os.rename(old_file_name, video)
-    if message.reply_to_message.video:
+    if ext in ['mp4','mkv','ts']:
         start_time = time.time()
         duration = get_duration(video)
         thumb_image_path = os.path.join(
@@ -81,7 +82,7 @@ async def rename(bot, message):
                 height = height,
                 supports_streaming=True) 
             await msg.edit("`Başarı ile Tamamlandı...`")
-    elif message.reply_to_message.photo:
+    elif ext in ['jpeg','png','jpg']:
         start_time = time.time()
         await msg.edit("`Yükleniyor..`") 
         await bot.send_photo(
