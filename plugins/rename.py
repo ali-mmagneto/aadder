@@ -1,4 +1,4 @@
-import Pyrogram
+import pyrogram
 from pyrogram import Client, filters
 import os
 from helper_func.thumb import get_thumbnail, get_duration, get_width_height
