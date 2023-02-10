@@ -112,7 +112,7 @@ async def rename(bot, message):
             thumb = None
         duration = 0
 
-        metadata = extractMetadata(createParser(file_loc))
+        metadata = extractMetadata(createParser(video))
         if metadata and metadata.has("title"):
             title = metadata.get("title")
         if metadata and metadata.has("artist"):
