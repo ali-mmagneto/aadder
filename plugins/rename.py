@@ -17,6 +17,7 @@ async def rename(bot, message):
     msg = await bot.send_message(
         chat_id=message.chat.id,
         text="`İşlem Başlatıldı...`")
+    await msg.edit("`Indiriliyor..`")
     media = await bot.download_media(
                 message = message.reply_to_message,
                 file_name = f"{file_name}",
@@ -39,6 +40,7 @@ async def rename(bot, message):
         thumb = get_thumbnail(video, './' + Config.DOWNLOAD_DIR, duration / 4)
     width, height = get_width_height(video)
     file_size = os.stat(video).st_size
+    await msg.edit("`Yükleniyor..`") 
     await bot.send_video(
         chat_id = message.chat.id,
         progress = progress_bar, 
