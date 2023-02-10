@@ -4,7 +4,7 @@ import os
 from helper_func.thumb import get_thumbnail, get_duration, get_width_height
 from helper_func.progress_bar import progress_bar
 from config import Config
-
+import time
 
 @Client.on_message(filters.command('rename'))
 async def rename(bot, message):
@@ -12,6 +12,9 @@ async def rename(bot, message):
     file_name = text[1]
     caption = f"`{file_name}`"
     video = f"downloads/{file_name}"
+    msg = await bot.send_message(
+        chat_id=message.chat.id,
+        text="`İşlem Başlatıldı`")
     media = await bot.download_media(
                 message = message.reply_to_message,
                 file_name = f"{file_name}")
@@ -37,7 +40,7 @@ async def rename(bot, message):
         progress = progress_bar, 
         progress_args = (
             'Dosyan Yükleniyor!',
-            sent_msg,
+            msg,
             start_time
             ),
         video = video,
