@@ -33,7 +33,7 @@ async def rename(bot, message):
     if os.path.exists(thumb_image_path):
         thumb = thumb_image_path
     else:
-        thumb = get_thumbnail(file_path, './' + Config.DOWNLOAD_DIR, duration / 4)
+        thumb = get_thumbnail(video, './' + Config.DOWNLOAD_DIR, duration / 4)
     width, height = get_width_height(video)
     file_size = os.stat(video).st_size
     await bot.send_video(
