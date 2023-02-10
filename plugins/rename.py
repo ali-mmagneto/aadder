@@ -42,22 +42,41 @@ async def rename(bot, message):
         width, height = get_width_height(video)
         file_size = os.stat(video).st_size
         await msg.edit("`Yükleniyor..`") 
-        await bot.send_video(
-            chat_id = message.chat.id,
-            progress = progress_bar, 
-            progress_args = (
-                'Dosyan Yükleniyor!',
-                msg,
-                start_time
-                ),
-            video = video,
-            caption = caption,
-            duration = duration,
-            thumb = thumb,
-            width = width,
-            height = height,
-            supports_streaming=True)
-        await msg.edit("`Başarı ile Tamamlandı...`")
+        file_size = os.stat(new_file).st_size
+        if file_size > 2093796556:
+            await Config.userbot.send_video(
+                chat_id = Config.PRE_LOG,
+                progress = progress_bar, 
+                progress_args = (
+                    'Dosyan Yükleniyor!',
+                    msg,
+                    start_time
+                    ),
+                video = video,
+                caption = caption,
+                duration = duration,
+                thumb = thumb,
+                width = width,
+                height = height,
+                supports_streaming=True)
+            await msg.edit("`Başarı ile Tamamlandı...`")
+        else:
+            await bot.send_video(
+                chat_id = message.chat.id,
+                progress = progress_bar, 
+                progress_args = (
+                    'Dosyan Yükleniyor!',
+                    msg,
+                    start_time
+                    ),
+                video = video,
+                caption = caption,
+                duration = duration,
+                thumb = thumb,
+                width = width,
+                height = height,
+                supports_streaming=True) 
+            await msg.edit("`Başarı ile Tamamlandı...`")
     elif message.reply_to_message.photo:
         start_time = time.time()
         await msg.edit("`Yükleniyor..`") 
