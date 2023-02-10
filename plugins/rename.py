@@ -12,7 +12,7 @@ async def rename(bot, message):
     file_name = text[1]
     caption = f"<code>{file_name}</code>`"
     start_time = time.time()
-    video = f"Config.DOWNLOAD_DIR/{file_name}"
+    video = f"downloads/{file_name}"
     chat_id = str(message.from_user.id)
     msg = await bot.send_message(
         chat_id=message.chat.id,
@@ -23,9 +23,9 @@ async def rename(bot, message):
                 file_name = f"{file_name}",
                 progress=progress_bar,
                 progress_args=("`İndiriliyor...`", msg, start_time))
-    splitpath = media.split("/Config.DOWNLOAD_DIR/")
+    splitpath = media.split("/downloads/")
     dow_file_name = splitpath[1]
-    old_file_name =f"Config.DOWNLOAD_DIR/{dow_file_name}"
+    old_file_name =f"downloads/{dow_file_name}"
     os.rename(old_file_name, video)
     if video.video:
         start_time = time.time()
