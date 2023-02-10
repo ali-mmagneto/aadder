@@ -10,7 +10,7 @@ import time
 async def rename(bot, message):
     text = message.text.split(" ", 1)
     file_name = text[1]
-    caption = f"`{file_name}`"
+    caption = f"<code>{file_name}</code>`"
     start_time = time.time()
     video = f"downloads/{file_name}"
     chat_id = str(message.from_user.id)
