@@ -44,7 +44,7 @@ async def rename(bot, message):
         await msg.edit("`Yükleniyor..`") 
         file_size = os.stat(video).st_size
         if file_size > 2093796556:
-            await Config.userbot.send_video(
+            copy = await Config.userbot.send_video(
                 chat_id = Config.PRE_LOG,
                 progress = progress_bar, 
                 progress_args = (
@@ -59,6 +59,10 @@ async def rename(bot, message):
                 width = width,
                 height = height,
                 supports_streaming=True)
+            await bot.copy_message(
+                chat_id=message.chat.id, 
+                from_chat_id=Config.PRE_LOG, 
+                message_id=copy.id)
             await msg.edit("`Başarı ile Tamamlandı...`")
         else:
             await bot.send_video(
