@@ -27,33 +27,48 @@ async def rename(bot, message):
     dow_file_name = splitpath[1]
     old_file_name =f"downloads/{dow_file_name}"
     os.rename(old_file_name, video)
-    start_time = time.time()
-    duration = get_duration(video)
-    thumb_image_path = os.path.join(
-        Config.DOWNLOAD_DIR,
-        chat_id,
-        chat_id + ".jpg"
-    )
-    if os.path.exists(thumb_image_path):
-        thumb = thumb_image_path
-    else:
-        thumb = get_thumbnail(video, './' + Config.DOWNLOAD_DIR, duration / 4)
-    width, height = get_width_height(video)
-    file_size = os.stat(video).st_size
-    await msg.edit("`Yükleniyor..`") 
-    await bot.send_video(
-        chat_id = message.chat.id,
-        progress = progress_bar, 
-        progress_args = (
-            'Dosyan Yükleniyor!',
-            msg,
-            start_time
-            ),
-        video = video,
-        caption = caption,
-        duration = duration,
-        thumb = thumb,
-        width = width,
-        height = height,
-        supports_streaming=True)
-    await msg.edit("`Başarı ile Tamamlandı...`")
+    if video.video:
+        start_time = time.time()
+        duration = get_duration(video)
+        thumb_image_path = os.path.join(
+            Config.DOWNLOAD_DIR,
+            chat_id,
+            chat_id + ".jpg"
+        )
+        if os.path.exists(thumb_image_path):
+            thumb = thumb_image_path
+        else:
+            thumb = get_thumbnail(video, './' + Config.DOWNLOAD_DIR, duration / 4)
+        width, height = get_width_height(video)
+        file_size = os.stat(video).st_size
+        await msg.edit("`Yükleniyor..`") 
+        await bot.send_video(
+            chat_id = message.chat.id,
+            progress = progress_bar, 
+            progress_args = (
+                'Dosyan Yükleniyor!',
+                msg,
+                start_time
+                ),
+            video = video,
+            caption = caption,
+            duration = duration,
+            thumb = thumb,
+            width = width,
+            height = height,
+            supports_streaming=True)
+        await msg.edit("`Başarı ile Tamamlandı...`")
+    elif video.photo:
+        await msg.edit("`Yükleniyor..`") 
+        await bot.send_photo(
+            chat_id = message.chat.id,
+            progress = progress_bar, 
+            progress_args = (
+                'Dosyan Yükleniyor!',
+                msg,
+                start_time
+                ),
+            photo = video,
+            caption = caption) 
+        await msg.edit("`Başarıyla Tamamlandı`")
+        
