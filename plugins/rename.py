@@ -21,7 +21,7 @@ async def rename(bot, message):
                 message = message.reply_to_message,
                 file_name = f"{file_name}",
                 progress=progress_bar,
-                progress_args=("`İndiriliyor...`", msg, start_time)))
+                progress_args=("`İndiriliyor...`", msg, start_time))
     splitpath = media.split("/downloads/")
     dow_file_name = splitpath[1]
     old_file_name =f"downloads/{dow_file_name}"
