@@ -96,4 +96,41 @@ async def rename(bot, message):
             photo = video,
             caption = caption) 
         await msg.edit("`Başarıyla Tamamlandı`")
-        
+    elif ext in ['m4a','mp3','aac']:
+        title = None
+        artist = None
+        thumb_image_path = os.path.join(
+            Config.DOWNLOAD_DIR,
+            chat_id,
+            chat_id + ".jpg"
+        )
+        if os.path.exists(thumb_image_path):
+            thumb = thumb_image_path
+        else:
+            thumb = None
+        duration = 0
+
+        metadata = extractMetadata(createParser(file_loc))
+        if metadata and metadata.has("title"):
+            title = metadata.get("title")
+        if metadata and metadata.has("artist"):
+            artist = metadata.get("artist")
+        if metadata and metadata.has("duration"):
+            duration = metadata.get("duration").seconds
+        c_time = time.time()  
+        await msg.edit("`Yükleniyor..`")  
+        await bot.send_audio(
+            chat_id=message.chat.id,
+            audio=video,
+            thumb=thumb,
+            caption=caption,
+            title=title,
+            performer=artist,
+            duration=duration,
+            progress=progress_bar,
+            progress_args=(
+                "`Yükleniyor`",
+                msg,
+                c_time
+            )
+        )
