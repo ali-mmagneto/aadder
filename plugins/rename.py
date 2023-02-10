@@ -12,6 +12,7 @@ async def rename(bot, message):
     file_name = text[1]
     caption = f"`{file_name}`"
     video = f"downloads/{file_name}"
+    chat_id = message.chat.id
     msg = await bot.send_message(
         chat_id=message.chat.id,
         text="`İşlem Başlatıldı`")
