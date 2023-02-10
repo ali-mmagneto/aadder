@@ -1,6 +1,7 @@
 import pyrogram
 from pyrogram import Client, filters
 import os
+from hachoir.metadata import extractMetadata
 from helper_func.thumb import get_thumbnail, get_duration, get_width_height
 from helper_func.progress_bar import progress_bar
 from config import Config
