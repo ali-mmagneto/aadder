@@ -12,7 +12,7 @@ async def rename(bot, message):
     file_name = text[1]
     caption = f"<code>{file_name}</code>`"
     start_time = time.time()
-    video = f"downloads/{file_name}"
+    video = downloads/file_name
     chat_id = str(message.from_user.id)
     msg = await bot.send_message(
         chat_id=message.chat.id,
@@ -27,7 +27,7 @@ async def rename(bot, message):
     dow_file_name = splitpath[1]
     old_file_name =f"downloads/{dow_file_name}"
     os.rename(old_file_name, video)
-    if message.reply_to_message.video:
+    if video.video:
         start_time = time.time()
         duration = get_duration(video)
         thumb_image_path = os.path.join(
