@@ -42,7 +42,7 @@ async def rename(bot, message):
         width, height = get_width_height(video)
         file_size = os.stat(video).st_size
         await msg.edit("`Yükleniyor..`") 
-        file_size = os.stat(new_file).st_size
+        file_size = os.stat(video).st_size
         if file_size > 2093796556:
             await Config.userbot.send_video(
                 chat_id = Config.PRE_LOG,
