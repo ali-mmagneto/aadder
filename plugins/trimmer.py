@@ -60,7 +60,7 @@ async def read_stderr(start, msg, process):
                     except Exception as e:
                         print(e)
 
-async def videotrimleyici(msg, trimtemp, baslangic, bitis):
+async def videotrimleyici(msg, trimtemp, baslangic, bitis, bot, message):
     start = time.time()
     output = "KesilmisVideo.mp4"
     out_location = f"downloads/{output}"
@@ -73,29 +73,25 @@ async def videotrimleyici(msg, trimtemp, baslangic, bitis):
             '-c:a','copy',
             '-y',out_location
             ]
-
-    process = await asyncio.create_subprocess_exec(
-            *command,
-            # stdout must a pipe to be accessible as process.stdout
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
-            )
-
-    # https://github.com/jonghwanhyeon/python-ffmpeg/blob/ccfbba93c46dc0d2cafc1e40ecb71ebf3b5587d2/ffmpeg/ffmpeg.py#L114
+    try:
+        process = await asyncio.create_subprocess_exec(
+                *command,
+                # stdout must a pipe to be accessible as process.stdout
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE,
+                )
     
-    await asyncio.wait([
-            read_stderr(start, msg, process),
-            process.wait(),
-        ])
-    
-    if process.returncode == 0:
-        await msg.edit('Ses Ekleme Başarı İle Tamamlandı!\n\nGeçen Süre : {} saniye'.format(round(start-time.time())))
-    else:
-        await msg.edit('Ses Eklenirken Bir Hata Oluştu!')
-        return False
-    time.sleep(2)
-    return output
-
+        if process.returncode == 0:
+            await msg.edit('Ses Ekleme Başarı İle Tamamlandı!\n\nGeçen Süre : {} saniye'.format(round(start-time.time())))
+        else:
+            await msg.edit('Ses Eklenirken Bir Hata Oluştu!')
+            return False
+        time.sleep(2)
+        return output
+    except Exception as e:
+        await bot.send_message(
+            chat_id=message.chat.id, 
+            text=f"{e}")
 @Client.on_message(filters.command('trim'))
 async def trimmes(bot, message):
     if not message.reply_to_message:
@@ -120,7 +116,7 @@ async def trimmes(bot, message):
                 progress=progress_bar,
                 progress_args=("`İndiriliyor...`", msg, start_time))
     trimtemp = f"downloads/trimolcakvideo.mp4"
-    trimolmus = await videotrimleyici(msg, trimtemp, baslangic, bitis)
+    trimolmus = await videotrimleyici(msg, trimtemp, baslangic, bitis, bot, message)
 
 @Client.on_message(filters.command('birlestir'))
 async def videobirlestir(bot, message):
