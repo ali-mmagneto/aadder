@@ -41,3 +41,9 @@ async def video2al(bot, message):
                 progress_args=("`İndiriliyor...`", msg, start_time))
     old_file_name = f"downloads/video2.mp4"
     await message.reply_video(old_file_name)
+
+@Client.on_message(filters.command('birlestir'))
+async def videobirlestir(bot, message):
+    video1 = "downloads/video1.mp4"
+    video2 = "downloads/video2.mp4"
+    
