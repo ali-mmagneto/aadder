@@ -97,9 +97,18 @@ async def videobirlestirici(mes, video1, video2):
     time.sleep(2)
     return output
 
-@Client.on_message(filters.command('video1'))
-async def video1al(bot, message):
-    rand = random.randint(10, 900) 
+@Client.on_message(filters.command('trim'))
+async def trimmes(bot, message):
+    if not message.reply_to_message:
+        message.reply_text("`Bir Video Yanıtla..`") 
+    info = unidecode(message.text).split()
+    if len(info) < 3:
+        await bot.send_message(message.chat.id, "Hatalı Kullanım :/ Doğru Kullanım Şu Şekilde:\n\n`/trim 00:05:00 00:06:00`") 
+        return
+    baslangic = info[1]
+    bitis = info[2]
+    print(baslangic) 
+    print(bitis)
     msg = await bot.send_message(
         chat_id=message.chat.id,
         text="`İşlem Başlatıldı...`")
@@ -107,27 +116,10 @@ async def video1al(bot, message):
     start_time = time.time()
     media = await bot.download_media(
                 message = message.reply_to_message,
-                file_name = f"downloads/video1.mp4",
+                file_name = f"downloads/trimolcakvideo.mp4",
                 progress=progress_bar,
                 progress_args=("`İndiriliyor...`", msg, start_time))
-    old_file_name = f"downloads/video1.mp4"
-    await message.reply_video(old_file_name)
-
-@Client.on_message(filters.command('video2'))
-async def video2al(bot, message):
-    rand = random.randint(10, 900) 
-    msg = await bot.send_message(
-        chat_id=message.chat.id,
-        text="`İşlem Başlatıldı...`")
-    await msg.edit("`Indiriliyor..`")
-    start_time = time.time()
-    media = await bot.download_media(
-                message = message.reply_to_message,
-                file_name = f"downloads/video2.mp4",
-                progress=progress_bar,
-                progress_args=("`İndiriliyor...`", msg, start_time))
-    old_file_name = f"downloads/video2.mp4"
-    await message.reply_video(old_file_name)
+    trimtemp = f"downloads/trimolcakvideo.mp4"
 
 @Client.on_message(filters.command('birlestir'))
 async def videobirlestir(bot, message):
