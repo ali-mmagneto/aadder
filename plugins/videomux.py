@@ -128,7 +128,7 @@ async def video2al(bot, message):
 @Client.on_message(filters.command('birlestir'))
 async def videobirlestir(bot, message):
     directory = "downloads/" 
-    chat_id = message.chat.id
+    chat_id = str(message.chat.id)
     video1 = "downloads/video1.mp4"
     video2 = "downloads/video2.mp4" 
     video1temp = "video1.mp4" 
@@ -186,7 +186,7 @@ async def videobirlestir(bot, message):
             message_id=copy.id)
     else:
         copy = await bot.send_video(
-                chat_id = chat_id, 
+                chat_id = message.chat.id, 
                 progress = progress_bar, 
                 progress_args = (
                     'Dosyan Yükleniyor!',
