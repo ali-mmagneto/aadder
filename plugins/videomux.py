@@ -128,6 +128,7 @@ async def video2al(bot, message):
 @Client.on_message(filters.command('birlestir'))
 async def videobirlestir(bot, message):
     directory = "downloads/" 
+    chat_id = message.chat.id
     video1 = "downloads/video1.mp4"
     video2 = "downloads/video2.mp4" 
     video1temp = "video1.mp4" 
