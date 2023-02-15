@@ -179,7 +179,7 @@ async def videobirlestir(bot, message):
                 caption = "@mmagneto"
                 )
         text = 'Dosyan Başarı İle Yüklendi!\nGeçen Toplam Zaman : {} saniye'.format(round(time.time()-start_time))
-        await sent_msg.edit(text)
+        await mes.edit(text)
         await bot.copy_message(
             chat_id=chat_id, 
             from_chat_id=Config.PRE_LOG, 
@@ -202,4 +202,4 @@ async def videobirlestir(bot, message):
                 caption = "@mmagneto"
                 )
         text = 'Dosyan Başarı İle Yüklendi!\nGeçen Toplam Zaman : {} saniye'.format(round(time.time()-start_time))
-        await sent_msg.edit(text)
+        await mes.edit(text)
