@@ -22,4 +22,4 @@ async def rename(bot, message):
                 progress=progress_bar,
                 progress_args=("`İndiriliyor...`", msg, start_time))
     old_file_name =f"downloads/video1"
-    await message.reply_video("downloads/video1")
+    await message.reply_video(old_file_name)
