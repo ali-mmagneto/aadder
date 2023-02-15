@@ -59,7 +59,7 @@ async def read_stderr(start, mes, process):
                     except Exception as e:
                         print(e)
 
-async def videobirlestir(mes, video1, video2):
+async def videobirlestirici(mes, video1, video2):
     start = time.time()
     output = "birlestirilmisVideo.mp4"
     out_location = f"downloads/{output}"
@@ -142,7 +142,7 @@ async def videobirlestir(bot, message):
         await message.reply_text(text)
         return
     mes = await bot.send_message(message.chat.id, "`Videolar Birleştiriliyor..`")
-    birlesiktemp = await videobirlestir(mes, video1, video2)
+    birlesiktemp = await videobirlestirici(mes, video1, video2)
     video = os.path.join(Config.DOWNLOAD_DIR, birlesiktemp + '.@disneyplustur' + '.mp4')
     start_time = time.time()
     duration = get_duration(video)
