@@ -20,7 +20,7 @@ directorye = f"{Config.ENCODE_DIR}/"
 
 
 @Client.on_message(filters.command('downloads'))
-async def downloads_list(client, message):
+async def downloads_list(bot, message):
     say = 0
     dsy = ""
     if 1 == 1:
@@ -36,7 +36,7 @@ async def downloads_list(client, message):
             await message.reply("İstediğin Dosyayı Seç: ", reply_markup=ForceReply(True))
 
 @Client.on_message(filters.reply)
-async def api_connect(client, message):
+async def api_connect(bot, message):
     if message.reply_to_message.reply_markup and isinstance(message.reply_to_message.reply_markup, ForceReply):
         sent_msg = await message.reply_text("**✓ İşlem Başlatılıyor..**", reply_to_message_id=message.id)
         try:
@@ -110,7 +110,7 @@ async def api_connect(client, message):
             await message.reply_text(f"**Error :** {f}", reply_to_message_id=message.id)
 
 @Client.on_message(filters.command('encodes'))
-async def encodes_list(client, message):
+async def encodes_list(bot, message):
     say = 0
     dsy = ""
     if 1 == 1:
@@ -127,7 +127,7 @@ async def encodes_list(client, message):
 
 
 @Client.on_message(filters.reply)
-async def api_connect(client, message):
+async def api_connect(bot, message):
     if message.reply_to_message.reply_markup and isinstance(message.reply_to_message.reply_markup, ForceReply):
         sent_msg = await message.reply_text("**✓ İşlem Başlatılıyor..**", reply_to_message_id=message.id)
         try:
