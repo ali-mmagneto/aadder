@@ -143,7 +143,7 @@ async def videobirlestir(bot, message):
         return
     mes = await bot.send_message(message.chat.id, "`Videolar Birleştiriliyor..`")
     birlesiktemp = await videobirlestirici(mes, video1, video2)
-    video = os.path.join(Config.DOWNLOAD_DIR, birlesiktemp)
+    video = os.path.join(Config.DOWNLOAD_DIR, str(birlesiktemp))
     start_time = time.time()
     duration = get_duration(video)
     thumb_image_path = os.path.join(
