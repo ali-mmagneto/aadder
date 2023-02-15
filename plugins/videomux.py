@@ -20,10 +20,10 @@ async def video1al(bot, message):
     start_time = time.time()
     media = await bot.download_media(
                 message = message.reply_to_message,
-                file_name = f"downloads/video1-{rand}.mp4",
+                file_name = f"downloads/video1.mp4",
                 progress=progress_bar,
                 progress_args=("`İndiriliyor...`", msg, start_time))
-    old_file_name = f"downloads/video1-{rand}.mp4"
+    old_file_name = f"downloads/video1.mp4"
     await message.reply_video(old_file_name)
 
 @Client.on_message(filters.command('video2'))
@@ -36,8 +36,8 @@ async def video2al(bot, message):
     start_time = time.time()
     media = await bot.download_media(
                 message = message.reply_to_message,
-                file_name = f"downloads/video2-{rand}.mp4",
+                file_name = f"downloads/video2.mp4",
                 progress=progress_bar,
                 progress_args=("`İndiriliyor...`", msg, start_time))
-    old_file_name = f"downloads/video2-{rand}.mp4"
+    old_file_name = f"downloads/video2.mp4"
     await message.reply_video(old_file_name)
