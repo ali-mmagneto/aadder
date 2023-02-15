@@ -13,6 +13,7 @@ from config import Config
 import time
 import re
 import asyncio
+from unidecode import unidecode
 
 
 progress_pattern = re.compile(
