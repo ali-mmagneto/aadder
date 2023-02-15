@@ -41,7 +41,7 @@ async def readlines(stream):
 
         data.extend(await stream.read(1024))
 
-async def read_stderr(start, mes, process):
+async def read_stderr(start, msg, process):
     async for line in readlines(process.stderr):
             line = line.decode('utf-8')
             progress = parse_progress(line)
@@ -56,19 +56,19 @@ async def read_stderr(start, mes, process):
 
                 if round(diff % 5)==0:
                     try:
-                        await mes.edit(text=text)
+                        await msg.edit(text=text)
                     except Exception as e:
                         print(e)
 
-async def videobirlestirici(mes, video1, video2):
+async def videotrimleyici(msg, trimtemp, baslangic, bitis):
     start = time.time()
-    output = "birlestirilmisVideo.mp4"
+    output = "KesilmisVideo.mp4"
     out_location = f"downloads/{output}"
     command = [
             'ffmpeg','-hide_banner',
-            '-i', 'video1',
-            '-i', 'video2',
-            'filter_complex','[0:v]pad=iw*2:ih[int];[int][1:v]overlay=W/2:0[vid]', 
+            '-i', 'trimtemp',
+            'ss', 'baslangic',
+            't','bitis', 
             'map' '[vid]', 
             'c:v','libx264',
             'crf','23',
@@ -86,14 +86,14 @@ async def videobirlestirici(mes, video1, video2):
     # https://github.com/jonghwanhyeon/python-ffmpeg/blob/ccfbba93c46dc0d2cafc1e40ecb71ebf3b5587d2/ffmpeg/ffmpeg.py#L114
     
     await asyncio.wait([
-            read_stderr(start,mes, process),
+            read_stderr(start, msg, process),
             process.wait(),
         ])
     
     if process.returncode == 0:
-        await mes.edit('Ses Ekleme Başarı İle Tamamlandı!\n\nGeçen Süre : {} saniye'.format(round(start-time.time())))
+        await msg.edit('Ses Ekleme Başarı İle Tamamlandı!\n\nGeçen Süre : {} saniye'.format(round(start-time.time())))
     else:
-        await mes.edit('Ses Eklenirken Bir Hata Oluştu!')
+        await msg.edit('Ses Eklenirken Bir Hata Oluştu!')
         return False
     time.sleep(2)
     return output
@@ -101,7 +101,8 @@ async def videobirlestirici(mes, video1, video2):
 @Client.on_message(filters.command('trim'))
 async def trimmes(bot, message):
     if not message.reply_to_message:
-        message.reply_text("`Bir Video Yanıtla..`") 
+       await message.reply_text("`Bir Video Yanıtla..`")
+       return
     info = unidecode(message.text).split()
     if len(info) < 3:
         await bot.send_message(message.chat.id, "Hatalı Kullanım :/ Doğru Kullanım Şu Şekilde:\n\n`/trim 00:05:00 00:06:00`") 
@@ -121,6 +122,7 @@ async def trimmes(bot, message):
                 progress=progress_bar,
                 progress_args=("`İndiriliyor...`", msg, start_time))
     trimtemp = f"downloads/trimolcakvideo.mp4"
+    trimolmus = await videotrimleyici(msg, trimtemp, baslangic, bitis)
 
 @Client.on_message(filters.command('birlestir'))
 async def videobirlestir(bot, message):
