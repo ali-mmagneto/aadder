@@ -143,7 +143,7 @@ async def videobirlestir(bot, message):
         return
     mes = await bot.send_message(message.chat.id, "`Videolar Birleştiriliyor..`")
     birlesiktemp = await videobirlestirici(mes, video1, video2)
-    video = os.path.join(Config.DOWNLOAD_DIR, birlesiktemp + '.@disneyplustur' + '.mp4')
+    video = os.path.join(Config.DOWNLOAD_DIR, birlesiktemp)
     start_time = time.time()
     duration = get_duration(video)
     thumb_image_path = os.path.join(
@@ -175,7 +175,7 @@ async def videobirlestir(bot, message):
                 height = height,
                 supports_streaming=True,
                 video = video,
-                caption = final_filename  + '.@disneyplustur' + '.mp4'
+                caption = final_filename
                 )
         text = 'Dosyan Başarı İle Yüklendi!\nGeçen Toplam Zaman : {} saniye'.format(round(time.time()-start_time))
         await sent_msg.edit(text)
