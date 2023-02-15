@@ -37,7 +37,7 @@ async def save_doc(bot, message):
         return await message.reply_text("`Kim olduğunu bilmiyorum :')`")
     if (not message.reply_to_message) or (not message.reply_to_message.media) or (not get_file_attr(message.reply_to_message)):
         return await message.reply_text("`Lütfen Bir Dosya Yanıtla 😡!`", quote=True)
-    else:
+    elif message.reply_to_message:
         me = await bot.get_me()
         chat_id = message.from_user.id
         start_time = time.time()
