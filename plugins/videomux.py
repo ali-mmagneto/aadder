@@ -65,8 +65,13 @@ async def videobirlestirici(mes, video1, video2):
     out_location = f"downloads/{output}"
     command = [
             'ffmpeg','-hide_banner',
-            '-i', 'concat:video1|video2',
-            '-c:a','copy',
+            '-i', 'video1',
+            '-i', 'video2',
+            'filter_complex','[0:v]pad=iw*2:ih[int];[int][1:v]overlay=W/2:0[vid]', 
+            'map' '[vid]', 
+            'c:v','libx264',
+            'crf','23',
+            'preset','veryfast',
             '-y',out_location
             ]
 
