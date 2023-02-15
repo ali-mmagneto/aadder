@@ -69,7 +69,8 @@ async def videotrimleyici(msg, trimtemp, baslangic, bitis, bot, message):
             '-i','trimtemp',
             '-ss','00:05:00',
             '-to','00:06:00',
-            '-y',out_location
+            '-c','copy', 
+            'out_location'
             ]
     
     process = await asyncio.create_subprocess_exec(
