@@ -28,6 +28,7 @@ async def video1al(bot, message):
 
 @Client.on_message(filters.command('video2'))
 async def video2al(bot, message):
+    directory = "downloads/"
     rand = random.randint(10, 900) 
     msg = await bot.send_message(
         chat_id=message.chat.id,
@@ -46,10 +47,12 @@ async def video2al(bot, message):
 async def videobirlestir(bot, message):
     video1 = "downloads/video1.mp4"
     video2 = "downloads/video2.mp4" 
+    video1temp = "video1.mp4" 
+    video2temp = "video2.mp4" 
     text = ""
-    if not video1:
+    if not video1temp in os.listdir(directory):
         text += 'Birinci Videoyu Yolla\n'
-    if not video2:
+    if not video2temp in os.listdir(directory):
         text += 'İkinci Videoyu Yolla'
     await message.reply_text(text)
 
