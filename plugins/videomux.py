@@ -45,5 +45,11 @@ async def video2al(bot, message):
 @Client.on_message(filters.command('birlestir'))
 async def videobirlestir(bot, message):
     video1 = "downloads/video1.mp4"
-    video2 = "downloads/video2.mp4"
-    
+    video2 = "downloads/video2.mp4" 
+    text = ""
+    if not video1:
+        text += 'Birinci Videoyu Yolla\n'
+    if not video2:
+        text += 'İkinci Videoyu Yolla'
+    await message.reply_text(text)
+
