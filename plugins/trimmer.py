@@ -69,21 +69,22 @@ async def videotrimleyici(msg, trimtemp, baslangic, bitis, bot, message):
             '-i','trimtemp',
             '-ss','00:05:00',
             '-to','00:06:00',
-            '-c:v','copy', 
-            '-c:a','copy',
             '-y',out_location
             ]
-    try:
-        process = await asyncio.create_subprocess_exec(
-                *command,
-                # stdout must a pipe to be accessible as process.stdout
-                stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.PIPE,
-                )
-    except Exception as e:
-        await bot.send_message(
-            chat_id=message.chat.id, 
-            text=f"{e}") 
+    
+    process = await asyncio.create_subprocess_exec(
+            *command,
+            # stdout must a pipe to be accessible as process.stdout
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+            )
+
+    await asyncio.wait([
+            read_stderr(start, msg, process),
+            process.wait(),
+        ])
+
+
     if process.returncode == 0:
         await msg.edit('Ses Ekleme Başarı İle Tamamlandı!\n\nGeçen Süre : {} saniye'.format(round(start-time.time())))
     else:
