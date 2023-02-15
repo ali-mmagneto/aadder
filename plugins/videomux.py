@@ -23,7 +23,7 @@ async def video1al(bot, message):
                 file_name = f"downloads/video1-{rand}.mp4",
                 progress=progress_bar,
                 progress_args=("`İndiriliyor...`", msg, start_time))
-    old_file_name = "downloads/video1-{rand}.mp4"
+    old_file_name = f"downloads/video1-{rand}.mp4"
     await message.reply_video(old_file_name)
 
 @Client.on_message(filters.command('video2'))
