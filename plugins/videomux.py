@@ -15,6 +15,7 @@ async def rename(bot, message):
         chat_id=message.chat.id,
         text="`İşlem Başlatıldı...`")
     await msg.edit("`Indiriliyor..`")
+    start_time = time.time()
     media = await bot.download_media(
                 message = message.reply_to_message,
                 file_name = f"downloads/video1.mp4",
