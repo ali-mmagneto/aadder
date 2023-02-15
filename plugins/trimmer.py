@@ -80,18 +80,17 @@ async def videotrimleyici(msg, trimtemp, baslangic, bitis, bot, message):
                 stdout=asyncio.subprocess.PIPE,
                 stderr=asyncio.subprocess.PIPE,
                 )
-    
-        if process.returncode == 0:
-            await msg.edit('Ses Ekleme Başarı İle Tamamlandı!\n\nGeçen Süre : {} saniye'.format(round(start-time.time())))
-        else:
-            await msg.edit('Ses Eklenirken Bir Hata Oluştu!')
-            return False
-        time.sleep(2)
-        return output
     except Exception as e:
         await bot.send_message(
             chat_id=message.chat.id, 
-            text=f"{e}")
+            text=f"{e}") 
+    if process.returncode == 0:
+        await msg.edit('Ses Ekleme Başarı İle Tamamlandı!\n\nGeçen Süre : {} saniye'.format(round(start-time.time())))
+    else:
+        await msg.edit('Ses Eklenirken Bir Hata Oluştu!')
+        return False
+    time.sleep(2)
+    return output
 @Client.on_message(filters.command('trim'))
 async def trimmes(bot, message):
     if not message.reply_to_message:
