@@ -59,7 +59,7 @@ async def read_stderr(start, mes, process):
                     except Exception as e:
                         print(e)
 
-def videobirlestir(mes, video1, video2):
+async def videobirlestir(mes, video1, video2):
     start = time.time()
     output = "birlestirilmisVideo.mp4"
     out_location = f"downloads/{output}"
