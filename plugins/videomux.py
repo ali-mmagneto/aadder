@@ -28,7 +28,6 @@ async def video1al(bot, message):
 
 @Client.on_message(filters.command('video2'))
 async def video2al(bot, message):
-    directory = "downloads/"
     rand = random.randint(10, 900) 
     msg = await bot.send_message(
         chat_id=message.chat.id,
@@ -45,6 +44,7 @@ async def video2al(bot, message):
 
 @Client.on_message(filters.command('birlestir'))
 async def videobirlestir(bot, message):
+    directory = "downloads/" 
     video1 = "downloads/video1.mp4"
     video2 = "downloads/video2.mp4" 
     video1temp = "video1.mp4" 
