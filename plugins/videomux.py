@@ -10,7 +10,7 @@ from config import Config
 import time
 
 @Client.on_message(filters.command('video1'))
-async def rename(bot, message):
+async def video1al(bot, message):
     msg = await bot.send_message(
         chat_id=message.chat.id,
         text="`İşlem Başlatıldı...`")
@@ -22,4 +22,19 @@ async def rename(bot, message):
                 progress=progress_bar,
                 progress_args=("`İndiriliyor...`", msg, start_time))
     old_file_name = "downloads/video1.mp4"
+    await message.reply_video(old_file_name)
+
+@Client.on_message(filters.command('video2'))
+async def video2al(bot, message):
+    msg = await bot.send_message(
+        chat_id=message.chat.id,
+        text="`İşlem Başlatıldı...`")
+    await msg.edit("`Indiriliyor..`")
+    start_time = time.time()
+    media = await bot.download_media(
+                message = message.reply_to_message,
+                file_name = f"downloads/video2.mp4",
+                progress=progress_bar,
+                progress_args=("`İndiriliyor...`", msg, start_time))
+    old_file_name = "downloads/video2.mp4"
     await message.reply_video(old_file_name)
