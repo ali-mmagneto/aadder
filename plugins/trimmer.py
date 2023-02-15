@@ -66,9 +66,9 @@ async def videotrimleyici(msg, trimtemp, baslangic, bitis):
     out_location = f"downloads/{output}"
     command = [
             'ffmpeg','-hide_banner',
-            '-i', 'trimtemp',
-            '-ss', 'baslangic',
-            '-to','bitis',
+            '-i','trimtemp',
+            '-ss','00:05:00',
+            '-to','00:06:00',
             '-c:v','copy', 
             '-c:a','copy',
             '-y',out_location
