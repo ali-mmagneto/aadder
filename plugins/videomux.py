@@ -167,7 +167,7 @@ async def videobirlestir(bot, message):
                 progress = progress_bar, 
                 progress_args = (
                     'Dosyan Yükleniyor!',
-                    sent_msg,
+                    mes,
                     start_time
                     ),
                 duration = duration,
@@ -190,7 +190,7 @@ async def videobirlestir(bot, message):
                 progress = progress_bar, 
                 progress_args = (
                     'Dosyan Yükleniyor!',
-                    sent_msg,
+                    mes,
                     start_time
                     ),
                 duration = duration,
