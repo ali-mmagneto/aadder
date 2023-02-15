@@ -78,7 +78,7 @@ async def api_connect(bot, message):
                         height = height,
                         supports_streaming=True,
                         video = video,
-                        caption = final_filename  + '.@disneyplustur' + '.mp4'
+                        caption = f"{video}"
                         )
                 text = 'Dosyan Başarı İle Yüklendi!\nGeçen Toplam Zaman : {} saniye'.format(round(time.time()-start_time))
                 await sent_msg.edit(text)
@@ -101,8 +101,7 @@ async def api_connect(bot, message):
                         height = height,
                         supports_streaming=True,
                         video = video,
-                        caption = final_filename + '.@disneyplustur' + '.mp4'
-                        )
+                        caption = f"{video}")
                 text = 'Dosyan Başarı İle Yüklendi!\nGeçen Toplam Zaman : {} saniye'.format(round(time.time()-start_time))
                 await sent_msg.edit(text)
         except Exception as f:
@@ -169,7 +168,7 @@ async def api_connect(bot, message):
                         height = height,
                         supports_streaming=True,
                         video = video,
-                        caption = final_filename  + '.@disneyplustur' + '.mp4'
+                        caption = f"{video}"
                         )
                 text = 'Dosyan Başarı İle Yüklendi!\nGeçen Toplam Zaman : {} saniye'.format(round(time.time()-start_time))
                 await sent_msg.edit(text)
