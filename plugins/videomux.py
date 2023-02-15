@@ -176,7 +176,7 @@ async def videobirlestir(bot, message):
                 height = height,
                 supports_streaming=True,
                 video = video,
-                caption = final_filename
+                caption = "@mmagneto"
                 )
         text = 'Dosyan Başarı İle Yüklendi!\nGeçen Toplam Zaman : {} saniye'.format(round(time.time()-start_time))
         await sent_msg.edit(text)
@@ -199,7 +199,7 @@ async def videobirlestir(bot, message):
                 height = height,
                 supports_streaming=True,
                 video = video,
-                caption = final_filename + '.@disneyplustur' + '.mp4'
+                caption = "@mmagneto"
                 )
         text = 'Dosyan Başarı İle Yüklendi!\nGeçen Toplam Zaman : {} saniye'.format(round(time.time()-start_time))
         await sent_msg.edit(text)
