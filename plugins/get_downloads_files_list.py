@@ -8,7 +8,12 @@ from helper_func.dbhelper import Database as Db
 from helper_func.mux import sesekle_vid
 from helper_func.thumb import get_thumbnail, get_duration, get_width_height
 import time
+import logging 
 
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    handlers=[logging.FileHandler('log.txt'), logging.StreamHandler()],
+                    level=logging.INFO)
+LOGGER = logging.getLogger(__name__)
 
 directory = f"{Config.DOWNLOAD_DIR}/"
 directorye = f"{Config.ENCODE_DIR}/"
